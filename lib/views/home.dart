@@ -14,20 +14,10 @@ class HomeView extends StatelessWidget {
     Provider.of<ColorViewModel>(context, listen: false).generateRandomColor();
   }
 
-  void _saveColor(BuildContext context, RandomColor color) {
-    print('Color saved');
-    Provider.of<ColorViewModel>(context, listen: false).saveRandomColor(color);
-  }
-
-  void viewFavoriteColors(BuildContext context) {
-    print("showing favorite colors");
-    Provider.of<ColorViewModel>(context, listen: false).getFavoriteColors;
-  }
-
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-    RandomColor randomColor =
+    final Size _size = MediaQuery.of(context).size;
+    RandomColor _randomColor =
         Provider.of<ColorViewModel>(context).getRandomColor;
     return SafeArea(
       child: Scaffold(
@@ -36,12 +26,12 @@ class HomeView extends StatelessWidget {
             _onTap(context);
           },
           child: Consumer<ColorViewModel>(
-            builder: (context, cart, child) {
+            builder: (context, _, child) {
               return Container(
-                width: size.width,
-                height: size.height,
-                decoration: BoxDecoration(color: randomColor.color),
-                child: Center(
+                width: _size.width,
+                height: _size.height,
+                decoration: BoxDecoration(color: _randomColor.color),
+                child: const Center(
                   child: const Text(
                     'Hey there',
                     style: TextStyle(
@@ -53,34 +43,6 @@ class HomeView extends StatelessWidget {
               );
             },
           ),
-        ),
-        floatingActionButton: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Align(
-              alignment: Alignment.bottomRight,
-              child: FloatingActionButton(
-                onPressed: () {
-                  _saveColor(context, randomColor);
-                },
-                child: Icon(Icons.save),
-                tooltip: 'Save Color',
-              ),
-            ),
-            const SizedBox(
-              width: 10.0,
-            ),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: FloatingActionButton(
-                tooltip: 'view favorites',
-                onPressed: () {
-                  // TODO: When this is tapped, should navigate to the favorite page. Use Navigator 2.0.
-                },
-                child: Icon(Icons.favorite_border_outlined),
-              ),
-            )
-          ],
         ),
       ),
     );
