@@ -10,12 +10,12 @@ class FavoritesView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Favorites'),
+        title: const Text('Favorites'),
       ),
       body: Consumer<ColorViewModel>(
         builder: (context, value, child) => ListView.builder(
           itemCount: value.getFavoriteColors.length,
-          padding: EdgeInsets.symmetric(vertical: 16.0),
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
           itemBuilder: (context, index) =>
               FavoriteColorTile(color: value.getFavoriteColors[index]),
         ),
@@ -42,13 +42,13 @@ class FavoriteColorTile extends StatelessWidget {
         onPressed: () {
           Provider.of<ColorViewModel>(context, listen: false).remove(color);
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('Removed from favorites.'),
-              duration: Duration(milliseconds: 500),
+            const SnackBar(
+              content: const Text('Removed from favorites.'),
+              duration: const Duration(milliseconds: 500),
             ),
           );
         },
-        icon: Icon(Icons.close),
+        icon: const Icon(Icons.close),
       ),
     );
   }

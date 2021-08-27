@@ -18,13 +18,13 @@ class HomeView extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Test Task'),
+          title: const Text('Test Task'),
           actions: [
             IconButton(
               onPressed: () {
                 Navigator.pushNamed(context, FavoritesView.routeName);
               },
-              icon: Icon(Icons.favorite_border_outlined),
+              icon: const Icon(Icons.favorite_border_outlined),
             )
           ],
         ),
@@ -43,7 +43,7 @@ class HomeView extends StatelessWidget {
                 child: const Center(
                   child: const Text(
                     'Hey there',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 40.0,
                       fontWeight: FontWeight.w900,
                     ),
@@ -65,11 +65,11 @@ class HomeView extends StatelessWidget {
                     colorViewModel.getFavoriteColors.contains(randomColor)
                         ? 'Added to favorites.'
                         : 'Removed from favorites'),
-                duration: Duration(milliseconds: 500),
+                duration: const Duration(milliseconds: 500),
               ),
             );
           },
-          child: Icon(Icons.save),
+          child: const Icon(Icons.save),
         ),
       ),
     );
