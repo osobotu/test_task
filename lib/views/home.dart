@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'package:test_app/viewmodels/color_vm.dart';
 import 'package:test_app/views/favorites.dart';
 
@@ -14,9 +13,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size _size = MediaQuery.of(context).size;
     var colorVM = Provider.of<ColorViewModel>(context);
-
     Color _randomColor = colorVM.getRandomColor;
-
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -56,15 +53,8 @@ class HomeView extends StatelessWidget {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          // onPressed: () {
-          //   _saveColor(
-          //     context,
-          //     RandomColor(color: _randomColor),
-          //   );
-          // },
           onPressed: () {
             print('color saved ...');
-
             !colorVM.getFavoriteColors.contains(_randomColor)
                 ? colorVM.add(_randomColor)
                 : colorVM.remove(_randomColor);
