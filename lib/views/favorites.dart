@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import 'package:test_app/viewmodels/color_vm.dart';
+import 'package:test_app/viewmodels/color_view_model.dart';
 
 class FavoritesView extends StatelessWidget {
   static String routeName = '/favorites_page';
@@ -35,6 +34,7 @@ class FavoriteColorTile extends StatelessWidget {
     final String green = color.green.toString();
     final String blue = color.blue.toString();
     final String opacity = color.opacity.toStringAsFixed(2);
+
     return ListTile(
       tileColor: color,
       title: Text("R:$red G:$green B:$blue Op:$opacity"),
@@ -44,7 +44,7 @@ class FavoriteColorTile extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('Removed from favorites.'),
-              duration: Duration(seconds: 1),
+              duration: Duration(milliseconds: 500),
             ),
           );
         },

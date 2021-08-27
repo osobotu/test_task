@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:test/test.dart';
-import 'package:test_app/viewmodels/color_vm.dart';
+import 'package:test_app/viewmodels/color_view_model.dart';
 
 void main() {
   group('Testing the ColorViewModel', () {

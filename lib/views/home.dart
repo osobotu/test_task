@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:test_app/viewmodels/color_vm.dart';
+import 'package:test_app/viewmodels/color_view_model.dart';
 import 'package:test_app/views/favorites.dart';
 
 class HomeView extends StatelessWidget {
@@ -11,9 +11,10 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size _size = MediaQuery.of(context).size;
-    var colorVM = Provider.of<ColorViewModel>(context);
-    Color _randomColor = colorVM.getRandomColor;
+    final Size size = MediaQuery.of(context).size;
+    var colorViewModel = Provider.of<ColorViewModel>(context);
+    Color randomColor = colorViewModel.getRandomColor;
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -36,9 +37,9 @@ class HomeView extends StatelessWidget {
           child: Consumer<ColorViewModel>(
             builder: (context, _, child) {
               return Container(
-                width: _size.width,
-                height: _size.height,
-                decoration: BoxDecoration(color: _randomColor),
+                width: size.width,
+                height: size.height,
+                decoration: BoxDecoration(color: randomColor),
                 child: const Center(
                   child: const Text(
                     'Hey there',
@@ -55,15 +56,16 @@ class HomeView extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             print('color saved ...');
-            !colorVM.getFavoriteColors.contains(_randomColor)
-                ? colorVM.add(_randomColor)
-                : colorVM.remove(_randomColor);
+            !colorViewModel.getFavoriteColors.contains(randomColor)
+                ? colorViewModel.add(randomColor)
+                : colorViewModel.remove(randomColor);
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text(colorVM.getFavoriteColors.contains(_randomColor)
-                    ? 'Added to favorites.'
-                    : 'Removed from favorites'),
-                duration: Duration(seconds: 1),
+                content: Text(
+                    colorViewModel.getFavoriteColors.contains(randomColor)
+                        ? 'Added to favorites.'
+                        : 'Removed from favorites'),
+                duration: Duration(milliseconds: 500),
               ),
             );
           },

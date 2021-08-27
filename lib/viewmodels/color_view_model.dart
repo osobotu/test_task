@@ -21,7 +21,7 @@ class ColorViewModel extends ChangeNotifier {
   }
 
   void add(Color color) {
-    _favoriteColors.add(color);
+    _favoriteColors.insert(0, color);
     notifyListeners();
   }
 
